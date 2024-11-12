@@ -18,16 +18,32 @@
 // This block listens to the website for your class names, and saves them as a variable
 serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     SerialData = serial.readUntil(serial.delimiters(Delimiters.NewLine))
-    music.playTone(262, music.beat(BeatFraction.Eighth))
+    esp8266.init(SerialPin.P16, SerialPin.P15, BaudRate.BaudRate115200)
+    if (esp8266.isESP8266Initialized()) {
+        basic.showIcon(IconNames.Heart)
+    } else {
+        basic.showIcon(IconNames.Yes)
+    }
+    esp8266.connectWiFi("YNWA", "liverpool")
+    if (esp8266.isWifiConnected()) {
+        basic.showIcon(IconNames.Yes)
+    } else {
+        basic.showIcon(IconNames.No)
+    }
     // This If statement checks that variable with the class name, and if it matches the class name you entered, it will activate the code within that block
     if (SerialData == "Class 1") {
-        basic.showIcon(IconNames.Heart)
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your Baby is left on car")
+        if (esp8266.isTelegramMessageSent()) {
+            basic.showIcon(IconNames.Yes)
+        }
     } else if (SerialData == "Class 2") {
-        basic.showIcon(IconNames.Happy)
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi Your Crying is Baby")
+        if (esp8266.isTelegramMessageSent()) {
+            basic.showIcon(IconNames.Yes)
+        }
     } else if (SerialData == "Class 3") {
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi Your Baby your Baby")
         basic.showIcon(IconNames.Meh)
-    } else {
-    	
     }
 })
 let SerialData = ""
