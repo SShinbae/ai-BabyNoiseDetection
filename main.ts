@@ -15,14 +15,17 @@
  * 
  * Just duplicate this <SerialData = " "> hexagon and place it into the  new else if statement
  */
+input.onSound(DetectedSound.Loud, function () {
+	
+})
 // This block listens to the website for your class names, and saves them as a variable
 serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    SerialData = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+    SerialData = serial.readLine()
     esp8266.init(SerialPin.P16, SerialPin.P15, BaudRate.BaudRate115200)
     if (esp8266.isESP8266Initialized()) {
         basic.showIcon(IconNames.Heart)
     } else {
-        basic.showIcon(IconNames.Yes)
+        basic.showIcon(IconNames.No)
     }
     esp8266.connectWiFi("YNWA", "liverpool")
     if (esp8266.isWifiConnected()) {
@@ -30,20 +33,12 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     } else {
         basic.showIcon(IconNames.No)
     }
-    // This If statement checks that variable with the class name, and if it matches the class name you entered, it will activate the code within that block
-    if (SerialData == "Class 1") {
-        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your Baby is left on car")
-        if (esp8266.isTelegramMessageSent()) {
-            basic.showIcon(IconNames.Yes)
-        }
-    } else if (SerialData == "Class 2") {
-        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi Your Crying is Baby")
-        if (esp8266.isTelegramMessageSent()) {
-            basic.showIcon(IconNames.Yes)
-        }
-    } else if (SerialData == "Class 3") {
-        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi Your Baby your Baby")
-        basic.showIcon(IconNames.Meh)
+    if (SerialData == "Class 3") {
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your Baby is car")
+        basic.showIcon(IconNames.TShirt)
+        control.reset()
+    } else {
+        basic.showIcon(IconNames.No)
     }
 })
 let SerialData = ""
