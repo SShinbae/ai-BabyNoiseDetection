@@ -25,18 +25,17 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     if (esp8266.isESP8266Initialized()) {
         basic.showIcon(IconNames.Heart)
     } else {
-        basic.showIcon(IconNames.No)
+        basic.showIcon(IconNames.Asleep)
     }
     esp8266.connectWiFi("YNWA", "liverpool")
     if (esp8266.isWifiConnected()) {
         basic.showIcon(IconNames.Yes)
     } else {
-        basic.showIcon(IconNames.No)
+        basic.showIcon(IconNames.Rollerskate)
     }
     if (SerialData == "Class 3") {
         esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your Baby is car")
         basic.showIcon(IconNames.TShirt)
-        control.reset()
     } else {
         basic.showIcon(IconNames.No)
     }
