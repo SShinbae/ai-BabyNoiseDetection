@@ -37,10 +37,18 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
             basic.showIcon(IconNames.TShirt)
             control.waitMicros(1000)
             control.reset()
+        } else if (SerialData == "Class 4") {
+            esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your Baby")
+            basic.showIcon(IconNames.Chessboard)
+            control.waitMicros(1000)
+            control.reset()
         } else if (SerialData == "Background Noise") {
             basic.showIcon(IconNames.Skull)
+            control.waitMicros(5000)
         } else {
             basic.showIcon(IconNames.No)
+            control.waitMicros(5000)
+            control.reset()
         }
     } else {
         basic.showIcon(IconNames.Rollerskate)
