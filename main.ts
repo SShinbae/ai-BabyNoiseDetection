@@ -7,32 +7,37 @@ serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     } else {
         basic.showIcon(IconNames.Asleep)
     }
-    esp8266.connectWiFi("YNWA", "liverpool")
+    esp8266.connectWiFi("REDMI", "qwertyui")
     if (esp8266.isWifiConnected()) {
         basic.showIcon(IconNames.Yes)
     } else {
         basic.showIcon(IconNames.Rollerskate)
     }
-    if (SerialData == "Class 3") {
-        esp8266.sendTelegramMessage("8135460584:AAGWFXNPcK1ero3tRzBGLAm_gv6l9DdO4Qc", "-4584861009", "Hi, Your Baby is car")
+    if (SerialData == "Baby Noise 1") {
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your baby is crying")
         basic.showIcon(IconNames.TShirt)
         control.waitMicros(1000)
         control.reset()
-    } else if (SerialData == "Class 2") {
-        esp8266.sendTelegramMessage("8135460584:AAGWFXNPcK1ero3tRzBGLAm_gv6l9DdO4Qc", "-4584861009", "Hi, Your Baby is in car")
+    } else if (SerialData == "Baby Noise 2") {
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your baby is crying")
         basic.showIcon(IconNames.TShirt)
         control.waitMicros(1000)
         control.reset()
-    } else if (SerialData == "Class 4") {
-        esp8266.sendTelegramMessage("8135460584:AAGWFXNPcK1ero3tRzBGLAm_gv6l9DdO4Qc", "-4584861009", "Hi, Your Baby")
+    } else if (SerialData == "Baby Noise 3") {
+        esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Hi, Your baby is crying")
         basic.showIcon(IconNames.Chessboard)
         control.waitMicros(1000)
         control.reset()
     } else if (SerialData == "Background Noise") {
         basic.showIcon(IconNames.Skull)
         control.waitMicros(5000)
-    } else if (SerialData == "Class 5") {
+        control.reset()
+    } else if (SerialData == "Snapping Noise") {
         basic.showIcon(IconNames.House)
+        control.waitMicros(5000)
+        control.reset()
+    } else if (SerialData == "Environment Noise") {
+        basic.showIcon(IconNames.Sword)
         control.waitMicros(5000)
         control.reset()
     } else {
